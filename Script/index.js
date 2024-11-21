@@ -5,26 +5,28 @@ const headerContent = document.querySelector('.content');
 const projectMain = document.querySelector('#projects');
 const contactMain = document.querySelector('#contact');
 
-// Dynamically calculate the number of columns and rows based on the viewport size
 const viewportWidth = window.innerWidth;
 const viewportHeight = window.innerHeight;
 
-// Assuming each square takes up 1vw x 1vw space (as defined in the CSS)
 const columns = 100;
-const rows = Math.floor(viewportHeight / (viewportWidth / 150)); // 1vw height
+const rows = Math.floor(viewportHeight / (viewportWidth / 100)) + 1;
 
-const totalSquares = columns * rows; // Total squares required
-
-const colors = [
+const colours = [
     "#FF0000", "#FF9900", "#EAFF00", "#49FF00",
     "#00FFB7", "#00A6FF", "#AA00FF", "#FF00E1"
 ];
 
-// Function to calculate probability based on distance from edges
-let height = 0.03;
-let base = 1.1;
-function calculateEdgeProbability(x, y) {
-    return Math.max((base ** (-x)) - height, (base ** (-(100 - x))) - height);
+const height = 0.03;
+const base = 1.1;
+const randomColourFactor = 0.1;
+function calculateColour(x, y) {
+    const probability = Math.max((base ** (-x)) - height, (base ** (-(99 - x))) - height);
+    if (Math.random() < probability) {
+        const randomColourFloat = Math.min((y / rows) + (Math.random() * randomColourFactor), 1);
+        return colours[Math.floor(randomColourFloat * colours.length)];
+    } else {
+        return null;
+    }
 }
 
 function generateBackground() {
@@ -36,22 +38,21 @@ function generateBackground() {
             const square = document.createElement('div');
 
             // Calculate the probability of this square changing color based on its position
-            const prob = calculateEdgeProbability(x, y);
+            const colour = calculateColour(x, y);
 
-            if (Math.random() < prob) {
-                square.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            if (colour) {
+                square.style.backgroundColor = colour;
                 square.style.border = "1px solid #000000";
                 if (x < 50) {
-                    square.style.gridColumn = x;
-                    square.style.gridRow = y;
+                    square.style.gridColumn = x+1;
+                    square.style.gridRow = y+1;
                     leftSquarePattern.appendChild(square);
                 } else {
-                    square.style.gridColumn = x-50;
-                    square.style.gridRow = y;
+                    square.style.gridColumn = x-49;
+                    square.style.gridRow = y+1;
                     rightSquarePattern.appendChild(square);
                 }
             }
-
         }
     }
 }
@@ -121,4 +122,3 @@ window.addEventListener('wheel', (event) => {
 });
 
 generateBackground();
-
