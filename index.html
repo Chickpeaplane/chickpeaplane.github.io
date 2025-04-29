@@ -12,17 +12,30 @@
     </head>
 
     <body>
-        <header id="hero">
-            <div class="square-pattern-div">
-                <div class="square-pattern" id="left-square-pattern"></div>
-                <div class="square-pattern" id="right-square-pattern"></div>
-            </div>
-            <div class="content">
-                <img src="Image/Chickpeaplane.png" alt="My Logo" class="logo unselectable">
-                <h1 class="unselectable">Chickpeaplane</h1>
-            </div>
-        </header>
+        <div id="container">
+            <main id="home" class="section">
+                <div class="square-pattern-div">
+                    <canvas id="left-squares" class="square-pattern"></canvas>
+                    <canvas id="right-squares" class="square-pattern"></canvas>
+                </div>
+                <div class="content">
+                    <img src="Image/Chickpeaplane.png" alt="My Logo" class="logo">
+                    <h1>Chickpeaplane</h1>
+                </div>
+            </main>
+    
+            <main id="projects" class="section">
+                <h2 class="sectionHeader">Projects</h2>
+                <div id="projects-holder">
 
+                </div>
+            </main>
+    
+            <main id="contact" class="section">
+                <h2 class="sectionHeader">Contact</h2>
+            </main>
+        </div>
+        
         <script src="Script/index.js"></script>
     </body>
 </html>

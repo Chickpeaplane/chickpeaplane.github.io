@@ -1,55 +1,38 @@
 :root {
 	--columns: 50;
+    --scroll: 0;
+    --distance-per-section: 1000;
+    --amount-of-sections: 0;
+}
+
+#container::-webkit-scrollbar {
+    display: none;
+}
+
+html {
+    scroll-behavior: smooth;
+
 }
 
 body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+}
+
+#container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
 	margin: 0;
-	font-family: Consolas, Monaco, monospace;
-	background: black;
+	font-family: Consolas, monaco, monospace;
+	background-color: rgb(0, 0, 0);
 	color: white;
-	overflow: hidden;
-	display: grid;
-	grid-template-rows: auto 1fr auto;
-	height: 100vh;
-}
-
-header {
-	position: relative;
-	height: 100vh;
-	display: flex;
 	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	text-align: center;
-	transition: transform 1s, opacity 1s ease-in-out;
-	grid-column: 1;
-	grid-row: 1;
-}
-
-header h1 {
-	font-size: 3rem;
-	margin: 0;
-}
-
-.logo {
-	width: 150px;
-	margin: 0;
-}
-
-main {
-	padding: 20px;
-	grid-column: 1;
-	grid-row: 1;
-}
-
-.square-pattern-div {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	display: grid;
-	transition: opacity 1s ease-out;
+	grid-template-rows: auto 1fr auto;
+	grid-template-columns: 1fr;
+    overflow-y: scroll; 
+    scroll-snap-type: y mandatory;
 }
 
 .square-pattern {
@@ -57,24 +40,106 @@ main {
 	top: 0;
 	width: 50%;
 	height: 100%;
-	display: grid;
-	grid-template-columns: repeat(var(--columns), calc(50vw / var(--columns)));
-	grid-auto-rows: calc(50vw / var(--columns));
 	transition: transform 1s ease-out, opacity 1s ease-out;
 }
 
-#left-square-pattern {
-	left: 0;
+#left-squares {
+    /* left: 0; */
+	left: calc(var(--scroll) * -1.5px);
 }
 
-#right-square-pattern {
-	right: 0;
+#right-squares {
+    /* right: 0; */
+	right: calc(var(--scroll) * -1.5px);
 }
 
-.unselectable {
-	-moz-user-select: -moz-none;
-	-khtml-user-select: none;
-	-webkit-user-select: none;
-	-ms-user-select: none;
+.logo {
+	width: 150px;
+	margin: 0px;
+}
+
+h1 {
+	font-size: 3rem;
+	margin: 0;
+}
+
+.sectionHeader {
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+* {
+	-webkit-user-drag: none;
 	user-select: none;
+}
+
+#home .content {
+    z-index: 10;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+}
+
+@property --section-index {
+    syntax: '<number>';
+    inherits: true;
+    initial-value: 0;
+}
+  
+.section {
+    scroll-snap-align: start; 
+    overflow-x: hidden;
+    z-index: calc(var(--amount-of-sections) - var(--section-index));
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: calc(var(--section-index) * var(--distance-per-section) * 1px);
+    opacity: calc(calc(var(--scroll) / var(--distance-per-section) - var(--section-index)) * calc(var(--scroll) / var(--distance-per-section) - var(--section-index)) * -1 + 1);
+}
+
+#projects-holder {
+    width: 100%;
+    overflow-y: scroll;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+#projects-holder::-webkit-scrollbar {
+    display: block;
+}
+
+.project-information {
+    padding: 10px;
+    width: 500px;
+    height: 200px;
+    border-radius: 5px;
+    border-top: 1px solid rgba(116, 116, 116, 0.199);
+    border-bottom: 1px solid rgba(22, 22, 22, 0.199);
+    background-color: rgba(70, 70, 70, 0.39);
+}
+
+.project-information h2 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+.project-topic-holder {
+    display: grid;
+    grid-auto-flow: column;
+}
+
+.project-topic {
+    background-color: #808080;
+    padding: 5px 10px;
+    border-radius: 50px;
+    color: white;
+    display: inline-block;
+    margin: 0px 2px 0px 2px;
 }
