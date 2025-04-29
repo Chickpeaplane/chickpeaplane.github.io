@@ -110,8 +110,8 @@ container.addEventListener("scroll", () => {
 });
 
 async function loadProjects() {
-    const githubUsername = "Chickpeaplane"; // Replace with the GitHub username of the user whose projects you want to list
-    const url = `https://api.github.com/users/${githubUsername}/repos`; // GitHub API endpoint for public repos
+    const githubUsername = "Chickpeaplane";
+    const url = `https://api.github.com/users/${githubUsername}/repos`;
 
     const response = await fetch(url);
     const repositories = await response.json();
@@ -123,6 +123,17 @@ async function loadProjects() {
     for (const repo of repositories) {
         const projectInformation = document.createElement("div");
         projectInformation.classList.add("project-information");
+
+        const projectGithubLink = document.createElement("a")
+        projectGithubLink.classList.add("github-link")
+        projectGithubLink.href = repo.html_url;
+        projectGithubLink.target = "_blank";
+        const githubIcon = document.createElement("img");
+        githubIcon.classList.add("github-link-icon")
+        githubIcon.src = "Image/github.svg";
+        githubIcon.alt = "Link to GitHub";
+        projectGithubLink.appendChild(githubIcon);
+        projectInformation.appendChild(projectGithubLink)
 
         const projectTitle = document.createElement("h2");
         projectTitle.textContent = repo.name.replaceAll("-", " ");
@@ -147,7 +158,7 @@ async function loadProjects() {
         for (const topic of repo.topics) {
             const topicP = document.createElement("p");
             topicP.classList.add("project-topic")
-            topicP.textContent = topic;
+            topicP.textContent = topic.replaceAll("-", " ").split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
             projectInformation.appendChild(topicP);
         }
 

@@ -143,3 +143,12 @@ h1 {
     display: inline-block;
     margin: 0px 2px 0px 2px;
 }
+
+.github-link {
+    right: 0;
+}
+
+.github-link-icon {
+    width: 20px;
+    filter: brightness(80%);
+}
