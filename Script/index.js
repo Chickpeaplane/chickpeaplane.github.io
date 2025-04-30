@@ -185,14 +185,12 @@ async function loadProjects() {
             projectInformation.style.backgroundPosition = `${bgX}% ${bgY}%`;
         });
         projectInformation.addEventListener("mouseleave", () => {
-            // Adding transition for smooth reset
             projectInformation.style.transition = 'transform 0.3s ease-out, background-position 0.3s ease-out';
             projectInformation.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
             projectInformation.style.backgroundPosition = '50% 50%';
 
-            // Optionally, you can reset the transition after it completes
             setTimeout(() => {
-                projectInformation.style.transition = ''; // Reset transition to default after animation
+                projectInformation.style.transition = '';
             }, 300);
         });
 
@@ -201,3 +199,5 @@ async function loadProjects() {
 }
 
 loadProjects()
+
+document.getElementById('year').textContent = new Date().getFullYear();

@@ -20,6 +20,21 @@ body {
     margin: 0;
 }
 
+footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
+    text-align: center;
+}
+
+footer a {
+    color: white;
+}
+
+footer a:visited {
+    color: #b0b0b0;
+}
+
 #container {
     width: 100vw;
     height: 100vh;
@@ -156,4 +171,9 @@ h1 {
 .github-link-icon {
     width: 20px;
     filter: brightness(80%);
+    transition: filter 300ms ease;
+}
+
+.github-link-icon:hover {
+    filter: brightness(100%);
 }
