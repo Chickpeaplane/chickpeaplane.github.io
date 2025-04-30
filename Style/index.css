@@ -91,6 +91,7 @@ h1 {
 }
   
 .section {
+    filter: blur(calc(calc(calc(var(--scroll) / var(--distance-per-section) - var(--section-index)) * calc(var(--scroll) / var(--distance-per-section) - var(--section-index))) *10px));
     scroll-snap-align: start; 
     overflow-x: hidden;
     z-index: calc(var(--amount-of-sections) - var(--section-index));
