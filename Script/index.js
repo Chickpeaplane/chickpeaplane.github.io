@@ -115,6 +115,7 @@ async function loadProjects() {
 
     const response = await fetch(url);
     const repositories = await response.json();
+    const sortedRepositories = repositories.sort(function (a, b) { return b.watchers_count - a.watchers_count });
 
     const projectsHolder = document.getElementById("projects-holder");
 
@@ -167,6 +168,29 @@ async function loadProjects() {
         projectInformation.addEventListener("click", () => {
             projectLink.click();
         })
+        projectInformation.addEventListener("mousemove", (e) => {
+            const rect = projectInformation.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            const rotateX = (y / rect.height) * -10;
+            const rotateY = (x / rect.width) * 10;
+            projectInformation.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            projectInformation.style.transition = 'transform 0.3s ease-out, background-position 0.3s ease-out';
+            const bgX = (x / rect.width) * 25 + 50;
+            const bgY = (y / rect.height) * 25 + 50;
+            projectInformation.style.backgroundPosition = `${bgX}% ${bgY}%`;
+        });
+        projectInformation.addEventListener("mouseleave", () => {
+            // Adding transition for smooth reset
+            projectInformation.style.transition = 'transform 0.3s ease-out, background-position 0.3s ease-out';
+            projectInformation.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
+            projectInformation.style.backgroundPosition = '50% 50%';
+
+            // Optionally, you can reset the transition after it completes
+            setTimeout(() => {
+                projectInformation.style.transition = ''; // Reset transition to default after animation
+            }, 300);
+        });
 
         projectsHolder.appendChild(projectInformation);
     };
