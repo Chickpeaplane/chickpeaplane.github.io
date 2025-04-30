@@ -177,3 +177,108 @@ h1 {
 .github-link-icon:hover {
     filter: brightness(100%);
 }
+
+#contact form {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: rgba(70, 70, 70, 0.39);
+    padding: 20px;
+    border-radius: 8px;
+    height: 75%;
+    border: 1px solid #444;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 1.1rem;
+    color: white;
+}
+
+input, textarea {font-family: Consolas, monaco, monospace;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #444;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 1rem;
+}
+
+textarea {
+    resize: vertical;
+    height: 100%;
+}
+
+button {
+    padding: 10px;
+    font-size: 1.2rem;
+    background-color: #00A6FF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #006da8;
+}
+
+.loading-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.loading-square {
+    width: 20px;
+    height: 20px;
+    animation: pulse 1.5s ease-in-out infinite alternate;
+}
+
+.loading-square:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.loading-square:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.loading-square:nth-child(4) {
+    animation-delay: 0.3s;
+}
+
+.loading-square:nth-child(5) {
+    animation-delay: 0.4s;
+}
+
+.loading-square:nth-child(6) {
+    animation-delay: 0.5s;
+}
+
+.loading-square:nth-child(7) {
+    animation-delay: 0.6s;
+}
+
+.loading-square:nth-child(8) {
+    animation-delay: 0.7s;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1.5);
+    }
+}

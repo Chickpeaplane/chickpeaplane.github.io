@@ -26,11 +26,30 @@
     
             <main id="projects" class="section">
                 <h2 class="sectionHeader">Projects</h2>
+                <div id="projects-loader" class="loading-container">
+                    <div class="loading-square" style="background-color: #FF0000;"></div>
+                    <div class="loading-square" style="background-color: #FF9900;"></div>
+                    <div class="loading-square" style="background-color: #EAFF00;"></div>
+                    <div class="loading-square" style="background-color: #49FF00;"></div>
+                    <div class="loading-square" style="background-color: #00FFB7;"></div>
+                    <div class="loading-square" style="background-color: #00A6FF;"></div>
+                    <div class="loading-square" style="background-color: #AA00FF;"></div>
+                    <div class="loading-square" style="background-color: #FF00E1;"></div>
+                </div>
                 <div id="projects-holder"></div>
             </main>
     
             <main id="contact" class="section">
                 <h2 class="sectionHeader">Contact</h2>
+                <form>                
+                    <input type="text" name="name" placeholder="Name" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <textarea name="message" placeholder="Message" required></textarea>
+                
+                    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                                
+                    <button type="submit">Send</button>
+                </form>
                 <footer>
                     <p>&copy; <span id="year"></span> Chickpeaplane. All rights reserved.<br>
                         Content licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank"

@@ -113,11 +113,15 @@ async function loadProjects() {
     const githubUsername = "Chickpeaplane";
     const url = `https://api.github.com/users/${githubUsername}/repos`;
 
+    const loader = document.getElementById("projects-loader");
+    const projectsHolder = document.getElementById("projects-holder");
+
+    loader.style.display = "flex";
+    projectsHolder.style.display = "none";
+
     const response = await fetch(url);
     const repositories = await response.json();
     const sortedRepositories = repositories.sort(function (a, b) { return b.watchers_count - a.watchers_count });
-
-    const projectsHolder = document.getElementById("projects-holder");
 
     projectsHolder.innerHTML = "";
 
@@ -196,6 +200,9 @@ async function loadProjects() {
 
         projectsHolder.appendChild(projectInformation);
     };
+    
+    loader.style.display = "none";
+    projectsHolder.style.display = "flex";
 }
 
 loadProjects()
