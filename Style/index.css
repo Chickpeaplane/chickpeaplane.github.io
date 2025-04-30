@@ -124,6 +124,7 @@ h1 {
     border-top: 1px solid rgba(116, 116, 116, 0.199);
     border-bottom: 1px solid rgba(22, 22, 22, 0.199);
     background-color: rgba(70, 70, 70, 0.39);
+    position: relative;
 }
 
 .project-information h2 {
@@ -146,7 +147,10 @@ h1 {
 }
 
 .github-link {
+    position: absolute;
+    top: 0;
     right: 0;
+    margin: 10px;
 }
 
 .github-link-icon {
