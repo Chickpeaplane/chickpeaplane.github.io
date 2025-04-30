@@ -165,8 +165,12 @@ async function loadProjects() {
 
         projectInformation.appendChild(projectTopicsHolder);
 
-        projectInformation.addEventListener("click", () => {
-            projectLink.click();
+        projectInformation.addEventListener("click", (event) => {
+            if (event.target == projectGithubLink || event.target == githubIcon) {
+                projectGithubLink.click();
+            } else {
+                projectLink.click();
+            }
         })
         projectInformation.addEventListener("mousemove", (e) => {
             const rect = projectInformation.getBoundingClientRect();
